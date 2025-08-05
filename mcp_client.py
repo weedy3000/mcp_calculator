@@ -9,7 +9,7 @@ from arkitect.core.component.context.context import Context
 from volcenginesdkarkruntime import AsyncArk
 from dotenv import load_dotenv
 import os
-os.environ['ARK_API_KEY'] = "Your Doubao API Key"
+os.environ['ARK_API_KEY'] = "0c0d41dc-5c1a-4c25-b5be-012b8e01c153"
 load_dotenv()  # load environment variables from .env
 client = AsyncArk(api_key=os.getenv('ARK_API_KEY'))
 # function_calling调用方法
@@ -93,7 +93,7 @@ class MCPClient:
         toolname = tool_call.function.name
         params = json.loads(tool_call.function.arguments)
         result = await self.session.call_tool(toolname,params)
-        print(result)
+        #print(result)
         tool_output = json.loads(result.content[0].text)['result']
         #print(tool_output)
         return tool_output
@@ -101,7 +101,7 @@ class MCPClient:
     async def chat_loop(self):
         """Run an interactive chat loop"""
         print("\nMCP Client Started!")
-        print("Type your queries or 'quit' to exit.")
+        print("Type your queries or 'q' to exit.")
 
         while True:
             try:
@@ -111,7 +111,7 @@ class MCPClient:
                     break
 
                 response = await self.process_query(query)
-                print(response)
+                # print('Result:',response)
 
             except Exception as e:
                 raise e
